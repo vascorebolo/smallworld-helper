@@ -53,11 +53,22 @@ function App() {
 
     for (const name in names) {
       namesItems.push(
-      <p>{ names[name] }</p>
+        <label>
+          { names[name] }
+          <input type="number" />
+        </label>
       )
     }
 
     return namesItems
+  }
+
+  const coinsSubmitHandler = (e) => {
+    e.preventDefault()
+
+    if (round < 10) {
+      setRound(round + 1)
+    }
   }
 
   const renderStep = () => {
@@ -65,7 +76,7 @@ function App() {
       case 1:
         return (
           <Card>
-            <p>What are the names of the { players } players</p>
+            <h2>What are the names of the { players } players</h2>
             <form onSubmit={namesSubmitHanlder}>
               { renderNameInputs() }
               <input type="submit" />
@@ -75,14 +86,17 @@ function App() {
       case 2:
           return (
             <Card>
-              <h2>Names</h2>
-              { renderNamesList() }
+              <h2>Coins earned in Round { round }</h2>
+              <form onSubmit={coinsSubmitHandler}>
+                { renderNamesList() }
+                <input type="submit" />
+              </form>
             </Card>
           )
       default:
         return (
           <Card>
-            <p>How many players ?</p>
+            <h2>How many players ?</h2>
             <div>
               <button onClick={() => handleSetPlayers(2)}>2</button>
               <button onClick={() => handleSetPlayers(3)}>3</button>
