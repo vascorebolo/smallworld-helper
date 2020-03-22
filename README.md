@@ -1,4 +1,4 @@
-# Small World Helper
+# Small World Helper (very early WIP)
 Web app to help keep track of coin earnings in a Small World game.
 
 It makes for a lot less boring game final, when everyone needs to count their individual earnings,
