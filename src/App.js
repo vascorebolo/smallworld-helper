@@ -8,6 +8,7 @@ function App() {
   const [ names, setNames ] = useState({})
   const [ coins, setCoins ] = useState({})
   const [ round, setRound ] = useState(1)
+  let coinsCount = []
 
   const handleSetPlayers = (nr) => {
     setStep(1)
@@ -55,7 +56,10 @@ function App() {
       namesItems.push(
         <label>
           { names[name] }
-          <input type="number" />
+          <input
+            type="number"
+            data-id={name}
+          />
         </label>
       )
     }
@@ -68,6 +72,12 @@ function App() {
 
     if (round < 10) {
       setRound(round + 1)
+
+      for (let i = 0; i < e.target.elements.length - 1; i++) {
+        const element = e.target.elements[i];
+        console.log(element.value, element.dataset)
+
+      }
     }
   }
 
