@@ -44,12 +44,12 @@ function App() {
         <>
           <label key="name-{i}">
             Name {i + 1}
-            <input
-              data-id={`name-${i}`}
-              type="text"
-              onChange={handleNameChange}
-            />
           </label>
+          <input
+            data-id={`name-${i}`}
+            type="text"
+            onChange={handleNameChange}
+          />
         </>
       )
     }
@@ -67,13 +67,15 @@ function App() {
 
     for (const name in names) {
       namesItems.push(
-        <label>
-          { names[name] }
+        <>
+          <label>
+            { names[name] }
+          </label>
           <input
             type="number"
             data-id={name}
           />
-        </label>
+        </>
       )
     }
 
@@ -106,7 +108,7 @@ function App() {
       }
 
       setCoins({...newValues})
-      if (round === 2) {
+      if (round === 10) {
         setStep(3)
       }
     }
@@ -127,10 +129,10 @@ function App() {
       case 1:
         return (
           <Card>
-            <h2>What are the names of the { players } players</h2>
+            <h2>What are the names of the { players } players?</h2>
             <form onSubmit={namesSubmitHanlder}>
               { renderNameInputs() }
-              <input type="submit" />
+              <input type="submit" value="⯈" />
             </form>
           </Card>
         )
@@ -140,7 +142,7 @@ function App() {
             <h2>Coins earned in Round { round }</h2>
             <form onSubmit={coinsSubmitHandler}>
               { renderNamesList() }
-              <input type="submit" />
+              <input type="submit" value="⯈" />
             </form>
           </Card>
         )

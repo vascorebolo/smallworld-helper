@@ -23,7 +23,7 @@ const ButtonStyled = styled.button`
 const PlayersNumber = ({ handleSetPlayers }) => {
   return (
     <Card>
-      <h2>How many players ?</h2>
+      <h2>How many players?</h2>
       <div>
         <ButtonStyled onClick={() => handleSetPlayers(2)}>2</ButtonStyled>
         <ButtonStyled onClick={() => handleSetPlayers(3)}>3</ButtonStyled>
