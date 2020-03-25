@@ -8,7 +8,6 @@ function App() {
   const [ names, setNames ] = useState({})
   const [ coins, setCoins ] = useState({})
   const [ round, setRound ] = useState(1)
-  let coinsCount = []
 
   const handleSetPlayers = (nr) => {
     setStep(1)
@@ -70,15 +69,43 @@ function App() {
   const coinsSubmitHandler = (e) => {
     e.preventDefault()
 
-    if (round < 10) {
+    if (round <= 10) {
       setRound(round + 1)
+      let newValues = {}
 
       for (let i = 0; i < e.target.elements.length - 1; i++) {
         const element = e.target.elements[i];
-        console.log(element.value, element.dataset)
+        if (round === 1) {
+          const entry = {}
+          entry[element.dataset.id] = element.value
 
+          newValues = {...newValues, ...entry}
+        } else {
+          const entry = {}
+          const id = element.dataset.id
+
+          entry[id] = coins[id] * 1 + element.value * 1
+          newValues = { ...newValues, ...entry }
+        }
+
+        element.value = ''
+      }
+
+      setCoins({...newValues})
+      if (round === 2) {
+        setStep(3)
       }
     }
+  }
+
+  const renderResults = () => {
+    const results = []
+
+    Object.keys(names).map(value =>
+      results.push(<p>{ names[value] }:  { coins[value] }</p>)
+    )
+
+    return results
   }
 
   const renderStep = () => {
@@ -94,15 +121,22 @@ function App() {
           </Card>
         )
       case 2:
-          return (
-            <Card>
-              <h2>Coins earned in Round { round }</h2>
-              <form onSubmit={coinsSubmitHandler}>
-                { renderNamesList() }
-                <input type="submit" />
-              </form>
-            </Card>
-          )
+        return (
+          <Card>
+            <h2>Coins earned in Round { round }</h2>
+            <form onSubmit={coinsSubmitHandler}>
+              { renderNamesList() }
+              <input type="submit" />
+            </form>
+          </Card>
+        )
+      case 3:
+        return (
+          <Card>
+            <h2>Results</h2>
+            { renderResults() }
+          </Card>
+        )
       default:
         return (
           <Card>
