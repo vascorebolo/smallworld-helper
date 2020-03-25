@@ -1,6 +1,20 @@
 import React, { useState } from 'react'
 import './App.css'
 import Card from './components/card'
+import Logo from './components/logo'
+import PlayerNumber from './components/players-number'
+import styled from 'styled-components'
+
+const AppStyled = styled.div`
+  align-items: center;
+  background: #fff url('./bg1.jpg') repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10 px + 2 vmin);
+  justify-content: center;
+  min-height: 100 vh;
+`
 
 function App() {
   const [ players, setPlayers ] = useState(0)
@@ -139,23 +153,16 @@ function App() {
         )
       default:
         return (
-          <Card>
-            <h2>How many players ?</h2>
-            <div>
-              <button onClick={() => handleSetPlayers(2)}>2</button>
-              <button onClick={() => handleSetPlayers(3)}>3</button>
-              <button onClick={() => handleSetPlayers(4)}>4</button>
-              <button onClick={() => handleSetPlayers(5)}>5</button>
-            </div>
-          </Card>
+          <PlayerNumber handleSetPlayers={handleSetPlayers}></PlayerNumber>
         )
     }
   }
 
   return (
-    <div className="App">
+    <AppStyled>
+      <Logo></Logo>
       { renderStep() }
-    </div>
+    </AppStyled>
   )
 }
 
