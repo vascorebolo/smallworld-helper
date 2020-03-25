@@ -1,12 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   color: #444;
   font-family: 'Varela Round', sans-serif;
   margin: 0;
+  text-align: center;
 }
 
 button {
   appearance: none;
   padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
 

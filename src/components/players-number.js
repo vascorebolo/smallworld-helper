@@ -6,9 +6,9 @@ import styled from 'styled-components'
 const ButtonStyled = styled.button`
   appearance: none;
   margin-left: 15px;
-  width: 60px;
-  height: 60px;
-  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
   padding: 0;
   border: 0;
   border-radius: 50%;
